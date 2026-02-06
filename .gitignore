@@ -10,8 +10,8 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-#Environmental file
-.env
+#Properties file
+src/main/resources/discord.properties
 
 # Package Files #
 *.jar
