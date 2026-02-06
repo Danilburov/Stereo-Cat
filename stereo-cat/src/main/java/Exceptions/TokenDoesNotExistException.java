@@ -2,7 +2,9 @@ package Exceptions;
 
 public class TokenDoesNotExistException extends IllegalArgumentException {
 
-    public TokenDoesNotExistException() {
-        super("No Discord token avialble.");
+    private String message;
+
+    public TokenDoesNotExistException(String text) {
+        this.message = text;
     }
 }

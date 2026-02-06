@@ -16,6 +16,7 @@ public class SlashCommandListener extends ListenerAdapter{
         switch(event.getName()){
             // case "ping" -> event.reply("pong").setEphemeral(true).queue(); //making the command only visible for me, good for testing setEphermal(true)\
             case "ping" -> event.reply("pong").queue();
+            case "firstowncommand" -> event.reply("Hi there").queue();
         }
     }
     

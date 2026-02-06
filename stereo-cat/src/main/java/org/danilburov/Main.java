@@ -2,12 +2,13 @@ package org.danilburov;
 import Exceptions.TokenDoesNotExistException;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
 
 public class Main {
     public static void main(String[] args) {
-        JDA jda = JDABuilder.createDefault(DiscordConfig.getToken()).addEventListeners(new SlashCommandListener()).build();
+        JDA jda = JDABuilder.createDefault(DiscordConfig.token()).addEventListeners(new SlashCommandListener()).build();
 
 
         try {
@@ -18,7 +19,7 @@ public class Main {
         }
 
         // Register the command (global OR guild). Use guild for fast testing.
-        String guildId = System.getenv("DEV_GUILD_ID");
+        String guildId = DiscordConfig.getDevGuildID();
         System.out.println(jda.getGuildById(guildId));
 
         if (guildId != null && !guildId.isBlank()) {
@@ -29,6 +30,7 @@ public class Main {
             } else {
                 guild.updateCommands()
                         .addCommands(Commands.slash("ping", "Replies with Pong!"))
+                        .addCommands(Commands.slash("firstowncommand", "Replies with 'Hi there'"))
                         .queue();
                 System.out.println("Registered /ping for guild " + guildId);
             }
@@ -36,6 +38,7 @@ public class Main {
             // Slow: can take minutes to propagate globally
             jda.updateCommands()
                     .addCommands(Commands.slash("ping", "Replies with Pong!"))
+                    .addCommands(Commands.slash("firstowncommand", "Replies with 'Hi there'"))
                     .queue();
             System.out.println("Registered /ping globally (may take some time to appear).");
         }
